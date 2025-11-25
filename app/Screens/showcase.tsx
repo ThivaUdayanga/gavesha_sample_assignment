@@ -5,6 +5,7 @@ import {
   Text,
   StyleSheet,
   TouchableOpacity,
+  Animated,
   ScrollView,
   Dimensions,
 } from "react-native"
@@ -13,7 +14,7 @@ import { useRouter } from "expo-router"
 
 const { width } = Dimensions.get("window")
 const H_PADDING = 24
-const CARD_WIDTH = width - H_PADDING * 2
+const CARD_WIDTH = width - 48
 
 export default function Showcase() {
   const router = useRouter()
@@ -26,12 +27,15 @@ export default function Showcase() {
     router.push("./finish")
   }
 
+  const scrollX = React.useRef(new Animated.Value(0)).current
+
   const cards = [1, 2, 3] // placeholder for your real data / images
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
       <View style={styles.content}>
         <View style={styles.body}>
+
           {/* Top language selector */}
           <View style={styles.headerRow}>
             <TouchableOpacity style={styles.languageButton} activeOpacity={0.8}>
@@ -43,21 +47,55 @@ export default function Showcase() {
           {/* Title */}
           <Text style={styles.title}>Showcase</Text>
 
-          {/* Horizontal carousel */}
+          {/* Horizontal animated carousel */}
           <View style={styles.carouselWrapper}>
-            <ScrollView
+            <Animated.ScrollView
               horizontal
               pagingEnabled
               showsHorizontalScrollIndicator={false}
               contentContainerStyle={styles.carouselContent}
+              onScroll={Animated.event(
+                [{ nativeEvent: { contentOffset: { x: scrollX } } }],
+                { useNativeDriver: true }
+              )}
+              scrollEventThrottle={16}
             >
-              {cards.map((item, index) => (
-                <View key={index} style={styles.card}>
-                  {/* Put your image / content here */}
-                </View>
-              ))}
-            </ScrollView>
+              {cards.map((item, index) => {
+                const inputRange = [
+                  (index - 1) * CARD_WIDTH,
+                  index * CARD_WIDTH,
+                  (index + 1) * CARD_WIDTH,
+                ]
+
+                const scale = scrollX.interpolate({
+                  inputRange,
+                  outputRange: [0.9, 1, 0.9],
+                  extrapolate: "clamp",
+                })
+
+                const translateY = scrollX.interpolate({
+                  inputRange,
+                  outputRange: [10, 0, 10],
+                  extrapolate: "clamp",
+                })
+
+                return (
+                  <Animated.View
+                    key={index}
+                    style={[
+                      styles.card,
+                      {
+                        transform: [{ scale }, { translateY }],
+                      },
+                    ]}
+                  >
+                    {/* Put your image or content here */}
+                  </Animated.View>
+                )
+              })}
+            </Animated.ScrollView>
           </View>
+
 
           {/* Label chips */}
           <View style={styles.chipsRow}>
@@ -114,6 +152,7 @@ const styles = StyleSheet.create({
   },
   headerRow: {
     alignItems: "flex-end",
+    marginBottom: 115,
   },
   languageButton: {
     flexDirection: "row",
@@ -139,17 +178,17 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   carouselWrapper: {
-    height: 280, // adjust to match your design
+    height: 260, // adjust to match your design
   },
   carouselContent: {
     alignItems: "center",
   },
   card: {
     width: CARD_WIDTH,
-    height: "100%",
+    height: '100%',
     borderRadius: 20,
     backgroundColor: "#d0d0d0",
-    marginRight: 16,
+    marginRight: 8,
   },
   chipsRow: {
     flexDirection: "row",
