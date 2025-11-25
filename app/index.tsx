@@ -37,7 +37,7 @@ export default function Index() {
   function handleSelectLanguage(code: string) {
     if (code === "en") {
       // go to your next screen
-      router.push("/home");
+      router.push("/Screens/home");
     } else {
       console.log("Selected", code);
     }
