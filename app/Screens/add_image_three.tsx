@@ -20,7 +20,7 @@ export default function Home() {
     }
     
     function handleNext() {
-        console.log("final")  // or whatever your next route is
+        router.push('./observation_details')  // or whatever your next route is
     }
 
   return (
