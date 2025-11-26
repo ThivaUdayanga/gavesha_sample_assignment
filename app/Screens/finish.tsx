@@ -1,4 +1,3 @@
-// app/home.tsx
 import React from "react";
 import {
   View,
@@ -11,9 +10,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { useRouter } from "expo-router";
 
+import LanguageSelector from "./../components/language_selector";
+
 export default function Home() {
 
-    const router = useRouter();
+    const router = useRouter()
+    const [language, setLanguage] = React.useState("en")
     
     function handleEdit() {
         console.log('finish')  // or whatever your next route is
@@ -37,11 +39,15 @@ export default function Home() {
                 <Text style={styles.homeButtonText}>Home</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.languageButton} activeOpacity={0.8}>
-                <Text style={styles.languageText}>English</Text>
-                <Text style={styles.languageCaret}>▾</Text>
-            </TouchableOpacity>
-        </View>
+          <LanguageSelector
+            value={language}
+            onChange={code => {
+              setLanguage(code);
+              console.log("Language changed to", code);
+              // later: hook into your i18n logic here
+            }}
+          />
+        </View>        
 
         {/* Showcase stacked cards (not scrollable) */}
         <View style={styles.showcaseStack}>

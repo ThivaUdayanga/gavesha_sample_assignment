@@ -10,8 +10,11 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
 
+import LanguageSelector from "./../components/language_selector";
+
 export default function ObservationDetails() {
   const router = useRouter()
+  const [language, setLanguage] = React.useState("en");
 
   function handlePrevious() {
     router.push("./add_image_three")
@@ -27,12 +30,16 @@ export default function ObservationDetails() {
         {/* main block so buttons stay at the bottom */}
         <View style={styles.body}>
           {/* Top language selector */}
-          <View style={styles.headerRow}>
-            <TouchableOpacity style={styles.languageButton} activeOpacity={0.8}>
-              <Text style={styles.languageText}>English</Text>
-              <Text style={styles.languageCaret}>▾</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.headerRow}>
+          <LanguageSelector
+            value={language}
+            onChange={code => {
+              setLanguage(code);
+              console.log("Language changed to", code);
+              // later: hook into your i18n logic here
+            }}
+          />
+        </View>
 
           {/* Title */}
           <Text style={styles.title}>Observation Details</Text>
@@ -143,7 +150,7 @@ const styles = StyleSheet.create({
     gap: 12,
   },
   input: {
-    backgroundColor: "#eee4f2",
+    backgroundColor: "#e3e2e3ff",
     borderRadius: 8,
     paddingHorizontal: 12,
     paddingVertical: 10,

@@ -10,9 +10,12 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter } from "expo-router";
 
+import LanguageSelector from "./../components/language_selector";
+
 export default function image2() {
 
     const router = useRouter();
+    const [language, setLanguage] = React.useState("en");
 
     function handlePrevious() {
         router.push('./home');        // or router.push("/previousScreen");
@@ -26,12 +29,15 @@ export default function image2() {
     <SafeAreaView style={styles.container}>
       <View style={styles.content}>
 
-        {/* Top language selector */}
         <View style={styles.headerRow}>
-          <TouchableOpacity style={styles.languageButton} activeOpacity={0.8}>
-            <Text style={styles.languageText}>English</Text>
-            <Text style={styles.languageCaret}>▾</Text>
-          </TouchableOpacity>
+          <LanguageSelector
+            value={language}
+            onChange={code => {
+              setLanguage(code);
+              console.log("Language changed to", code);
+              // later: hook into your i18n logic here
+            }}
+          />
         </View>
 
         {/* Title */}

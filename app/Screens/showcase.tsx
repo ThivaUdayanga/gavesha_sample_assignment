@@ -12,12 +12,15 @@ import {
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
 
+import LanguageSelector from "./../components/language_selector";
+
 const { width } = Dimensions.get("window")
 const H_PADDING = 24
 const CARD_WIDTH = width - 48
 
 export default function Showcase() {
   const router = useRouter()
+  const [language, setLanguage] = React.useState("en")
 
   function handlePrevious() {
     router.push("./observation_details")
@@ -36,13 +39,16 @@ export default function Showcase() {
       <View style={styles.content}>
         <View style={styles.body}>
 
-          {/* Top language selector */}
-          <View style={styles.headerRow}>
-            <TouchableOpacity style={styles.languageButton} activeOpacity={0.8}>
-              <Text style={styles.languageText}>English</Text>
-              <Text style={styles.languageCaret}>▾</Text>
-            </TouchableOpacity>
-          </View>
+        <View style={styles.headerRow}>
+          <LanguageSelector
+            value={language}
+            onChange={code => {
+              setLanguage(code);
+              console.log("Language changed to", code);
+              // later: hook into your i18n logic here
+            }}
+          />
+        </View>
 
           {/* Title */}
           <Text style={styles.title}>Showcase</Text>
