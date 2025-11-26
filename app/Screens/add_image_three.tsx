@@ -1,4 +1,3 @@
-// app/home.tsx
 import React from "react";
 import {
   View,
@@ -8,9 +7,7 @@ import {
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { useRouter } from "expo-router";
-
 import LanguageSelector from "./../components/language_selector";
 
 export default function Home() {
@@ -19,11 +16,11 @@ export default function Home() {
     const [language, setLanguage] = React.useState("en");
     
     function handlePrevious() {
-        router.push('./add_image_two');        // or router.push("/previousScreen");
+        router.push('./add_image_two')
     }
     
     function handleNext() {
-        router.push('./observation_details')  // or whatever your next route is
+        router.push('./observation_details')
     }
 
   return (
@@ -36,7 +33,6 @@ export default function Home() {
             onChange={code => {
               setLanguage(code);
               console.log("Language changed to", code);
-              // later: hook into your i18n logic here
             }}
           />
         </View>
@@ -61,7 +57,7 @@ export default function Home() {
             <TouchableOpacity
                 style={styles.navButton}
                 activeOpacity={0.8}
-                onPress={handlePrevious}   // router.back() or another screen
+                onPress={handlePrevious}
             >
                 <Text style={styles.navButtonText}>PREVIOUS</Text>
             </TouchableOpacity>
@@ -69,7 +65,7 @@ export default function Home() {
             <TouchableOpacity
                 style={styles.navButton}
                 activeOpacity={0.8}
-                onPress={handleNext}       // the NEXT navigation you already wrote
+                onPress={handleNext}
             >
                 <Text style={styles.navButtonText}>NEXT</Text>
             </TouchableOpacity>

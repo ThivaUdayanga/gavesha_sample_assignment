@@ -7,9 +7,7 @@ import {
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { useRouter } from "expo-router";
-
 import LanguageSelector from "./../components/language_selector";
 
 export default function Home() {
@@ -18,11 +16,11 @@ export default function Home() {
     const [language, setLanguage] = React.useState("en")
     
     function handleEdit() {
-        console.log('finish')  // or whatever your next route is
+        console.log('finish')  
     }
 
     function handleHome() {
-        router.push("./add_image_three");   // or router.back() if you just want to go back
+        router.push("./add_image_three")
     }
 
   return (
@@ -65,7 +63,7 @@ export default function Home() {
             <TouchableOpacity
                 style={styles.navButton}
                 activeOpacity={0.8}
-                onPress={handleEdit}       // the NEXT navigation you already wrote
+                onPress={handleEdit}
             >
                 <Text style={styles.navButtonText}>Edit</Text>
             </TouchableOpacity>
@@ -124,7 +122,7 @@ homeButtonText: {
   },
 
   showcaseStack: {
-  height: 520,             // adjust to match your design
+  height: 520,
   marginTop: 8,
   marginBottom: 16,
 },

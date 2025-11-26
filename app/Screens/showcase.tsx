@@ -1,4 +1,3 @@
-// app/showcase.tsx
 import React from "react"
 import {
   View,
@@ -9,9 +8,9 @@ import {
   ScrollView,
   Dimensions,
 } from "react-native"
+
 import { SafeAreaView } from "react-native-safe-area-context"
 import { useRouter } from "expo-router"
-
 import LanguageSelector from "./../components/language_selector";
 
 const { width } = Dimensions.get("window")
@@ -32,7 +31,7 @@ export default function Showcase() {
 
   const scrollX = React.useRef(new Animated.Value(0)).current
 
-  const cards = [1, 2, 3] // placeholder for your real data / images
+  const cards = [1, 2, 3]
 
   return (
     <SafeAreaView style={styles.container} edges={["top", "bottom"]}>
@@ -95,7 +94,7 @@ export default function Showcase() {
                       },
                     ]}
                   >
-                    {/* Put your image or content here */}
+                  {/* Put your image or content here */}
                   </Animated.View>
                 )
               })}
@@ -184,7 +183,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   carouselWrapper: {
-    height: 260, // adjust to match your design
+    height: 260, 
   },
   carouselContent: {
     alignItems: "center",

@@ -1,19 +1,3 @@
-// import { Text, View } from "react-native";
-
-// export default function Index() {
-//   return (
-//     <View
-//       style={{
-//         flex: 1,
-//         justifyContent: "center",
-//         alignItems: "center",
-//       }}
-//     >
-//       <Text>Thivanka</Text>
-//     </View>
-//   );
-// }
-
 import React from "react";
 import {
   SafeAreaView,
@@ -23,7 +7,7 @@ import {
   StyleSheet,
 } from "react-native";
 
-import { useRouter } from "expo-router"; // navigate to another page
+import { useRouter } from "expo-router"
 
 const LANGUAGES = [
   { code: "si", label: "සිංහල" },
@@ -36,8 +20,7 @@ export default function Index() {
 
   function handleSelectLanguage(code: string) {
     if (code === "en") {
-      // go to your next screen
-      router.push("/Screens/home");
+      router.push("./Screens/home");
     } else {
       console.log("Selected", code);
     }
@@ -76,11 +59,11 @@ export default function Index() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#ffffff", // matches splash white
+    backgroundColor: "#ffffff",
   },
   background: {
     flex: 1,
-    backgroundColor: "#cfcfcf", // light grey like in your design
+    backgroundColor: "#cfcfcf",
   },
   bottomSheet: {
     position: "absolute",
@@ -90,7 +73,7 @@ const styles = StyleSheet.create({
     paddingTop: 16,
     paddingHorizontal: 24,
     paddingBottom: 32,
-    backgroundColor: "#f9f1ff", // soft pink
+    backgroundColor: "#f9f1ff",
     borderTopLeftRadius: 24,
     borderTopRightRadius: 24,
   },

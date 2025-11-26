@@ -1,4 +1,3 @@
-// app/observation_details.tsx
 import React from "react"
 import {
   View,
@@ -29,14 +28,13 @@ export default function ObservationDetails() {
       <View style={styles.content}>
         {/* main block so buttons stay at the bottom */}
         <View style={styles.body}>
-          {/* Top language selector */}
+        {/* Top language selector */}
         <View style={styles.headerRow}>
           <LanguageSelector
             value={language}
             onChange={code => {
               setLanguage(code);
               console.log("Language changed to", code);
-              // later: hook into your i18n logic here
             }}
           />
         </View>

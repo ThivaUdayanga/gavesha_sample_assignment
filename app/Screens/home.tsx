@@ -1,4 +1,3 @@
-// app/home.tsx
 import React from "react";
 import {
   View,
@@ -8,9 +7,7 @@ import {
 } from "react-native";
 
 import { SafeAreaView } from "react-native-safe-area-context";
-
 import { useRouter } from "expo-router";
-
 import LanguageSelector from "./../components/language_selector";
 
 export default function Home() {
@@ -19,8 +16,7 @@ export default function Home() {
   const [language, setLanguage] = React.useState("en");
 
   function handleNext() {
-    // go to the next wizard page
-    router.push("./add_image_two");     // change "image2" to whatever file you create
+    router.push("./add_image_two")
   }
 
   return (
@@ -33,7 +29,6 @@ export default function Home() {
             onChange={code => {
               setLanguage(code);
               console.log("Language changed to", code);
-              // later: hook into your i18n logic here
             }}
           />
         </View>
@@ -58,7 +53,7 @@ export default function Home() {
           <TouchableOpacity
             style={styles.nextButton}
             activeOpacity={0.8}
-            onPress={handleNext}        // ← connect function here
+            onPress={handleNext}     
           >
             <Text style={styles.nextButtonText}>NEXT</Text>
           </TouchableOpacity>

@@ -1,4 +1,3 @@
-//image 2
 import React from "react";
 import {
   View,
@@ -18,11 +17,11 @@ export default function image2() {
     const [language, setLanguage] = React.useState("en");
 
     function handlePrevious() {
-        router.push('./home');        // or router.push("/previousScreen");
+        router.push('./home')
     }
 
     function handleNext() {
-        router.push("./add_image_three");  // or whatever your next route is
+        router.push("./add_image_three")
     }
 
   return (
@@ -35,7 +34,6 @@ export default function image2() {
             onChange={code => {
               setLanguage(code);
               console.log("Language changed to", code);
-              // later: hook into your i18n logic here
             }}
           />
         </View>
@@ -60,7 +58,7 @@ export default function image2() {
             <TouchableOpacity
                 style={styles.navButton}
                 activeOpacity={0.8}
-                onPress={handlePrevious}   // router.back() or another screen
+                onPress={handlePrevious}
             >
                 <Text style={styles.navButtonText}>PREVIOUS</Text>
             </TouchableOpacity>
@@ -68,7 +66,7 @@ export default function image2() {
             <TouchableOpacity
                 style={styles.navButton}
                 activeOpacity={0.8}
-                onPress={handleNext}       // the NEXT navigation you already wrote
+                onPress={handleNext}
             >
                 <Text style={styles.navButtonText}>NEXT</Text>
             </TouchableOpacity>
